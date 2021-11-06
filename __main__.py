@@ -21,7 +21,7 @@ try:
     img.save(screenshot_file, "PNG")
     img = cv2.imread(screenshot_file)
     img = cv2.resize(img, (img.shape[1]*resize_factor, img.shape[0]*resize_factor))
-    img = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)[1]
+    #img = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)[1]
     cv2.imwrite(screenshot_file, img)
     custom_config = r'--oem 3 --psm 6'
     text = pytesseract.image_to_string(img, config = custom_config)[:-2]

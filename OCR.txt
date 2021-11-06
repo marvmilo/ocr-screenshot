@@ -1,0 +1,17 @@
+#saving image
+img = ImageGrab.grabclipboard()
+#loading text
+try:
+img.save(screenshot_file, "PNG")
+img = cv2.imread(screenshot_file)
+img = cv2.resize(img, (img.shape[1]*resize factor, img.shape[@]*resize factor) )
+#img = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY) [1]
+cv2.imwrite(screenshot_file, img)
+custom_config = r'--oem 3 --psm 6'
+text = pytesseract.image to_string(img, config = custom_config)[:-2]
+except AttributeError:
+text = "ERROR :(\nNo image in your clipboard. Couldn't run OCR!"
+#write to file and open in notepad
+with open(OCR_text_file, "w") as wd:
+wd.write(text)
+os.system(f"notepad.exe {OCR_text_file}")
